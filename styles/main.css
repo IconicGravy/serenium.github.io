@@ -1,4 +1,4 @@
- :root {
+:root {
      --bg-deep: #020205;
      --accent: #ffffff;
      --accent-dim: rgba(255, 255, 255, 0.05);
@@ -307,15 +307,21 @@
 }
  .nav-inner {
      display: flex;
-     justify-content: space-between;
+     justify-content: center;
+    /* Centers the links */
      align-items: center;
+     position: relative;
+    /* Context for absolute children */
 }
  .logo {
+     position: absolute;
+     left: 30px;
+    /* All the way to the left */
+     z-index: 103;
      height: 45px;
      width: auto;
      display: flex;
      align-items: center;
-     z-index: 102;
 }
  .logo img {
      height: 100%;
@@ -330,6 +336,8 @@
  .nav-links {
      display: flex;
      gap: 40px;
+     align-items: center;
+     z-index: 102;
 }
  .nav-links a {
      color: var(--text-gray);
@@ -358,6 +366,55 @@
 }
  .nav-links a:hover::before {
      width: 100%;
+}
+/* New Legal Buttons Styling */
+ .nav-legal-actions {
+     display: flex;
+     gap: 15px;
+     margin-left: 0;
+    /* Removed margin, using positioning instead */
+     position: absolute;
+     right: -155px;
+    /* All the way to the right */
+     z-index: 103;
+}
+ .nav-legal-btn {
+     text-decoration: none;
+     color: var(--text-white);
+     font-family: 'Space Grotesk', sans-serif;
+     font-weight: 700;
+     text-transform: uppercase;
+     letter-spacing: 0.1em;
+     font-size: 0.75rem;
+     padding: 8px 20px;
+     border: 1px solid rgba(255, 255, 255, 0.4);
+     position: relative;
+     overflow: hidden;
+     transition: color 0.3s;
+     border-radius: 4px;
+     backdrop-filter: blur(5px);
+}
+ .nav-legal-btn::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: var(--accent);
+     transform: scaleX(0);
+     transform-origin: right;
+     transition: transform 0.5s var(--transition-premium);
+     z-index: -1;
+}
+ .nav-legal-btn:hover {
+     color: black;
+     border-color: var(--accent);
+     box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+ .nav-legal-btn:hover::before {
+     transform: scaleX(1);
+     transform-origin: left;
 }
  .hamburger {
      display: none;
@@ -455,6 +512,12 @@
 }
  .mobile-menu-overlay.active .mobile-nav-links a:nth-child(4) {
      transition: all 0.6s var(--transition-mobile) 0.5s;
+}
+ .mobile-menu-overlay.active .mobile-nav-links a:nth-child(5) {
+     transition: all 0.6s var(--transition-mobile) 0.6s;
+}
+ .mobile-menu-overlay.active .mobile-nav-links a:nth-child(6) {
+     transition: all 0.6s var(--transition-mobile) 0.7s;
 }
  #hero {
      min-height: 100vh;
@@ -1150,7 +1213,18 @@
      .container {
          padding: 0 20px;
     }
+    /* Reset Nav for Mobile */
+     .nav-inner {
+         justify-content: space-between;
+    }
+     .logo {
+         position: static;
+         left: auto;
+    }
      .nav-links {
+         display: none;
+    }
+     .nav-legal-actions {
          display: none;
     }
      .hamburger {
