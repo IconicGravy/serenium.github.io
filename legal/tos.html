@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://serenium.wtf/legal/tos">
+    <meta property="og:title" content="Terms of Service | Serenium HvH">
+    <meta property="og:description" content="Read the Terms of Service for Serenium HvH.">
+    <meta property="og:image" content="/assets/srnm/nobg-logo.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>Terms of Service | Serenium HvH</title>
+    <link rel="icon" type="image/png" href="/assets/srnm/nobg-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/93e034432430cd6858c7d1f1b0fb93f7.css" type="text/css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-background"></div>
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <nav>
+        <div class="container nav-inner">
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+            </div>
+        </div>
+    </nav>
+    <main class="section">
+        <div class="container">
+            <div class="policy-header">
+                <h1>Terms of Service</h1>
+                <p>Last Updated: Jan, 2026. By accessing or using Serenium, you agree to be bound by these Terms.</p>
+            </div>
+            <div class="policy-content">
+                
+                <h2>1. Acceptance of Terms</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">01</div>
+                    <h3>Agreement</h3>
+                    <p>By purchasing, executing, or using Serenium, you agree to be bound by these Terms. If you disagree with any part of terms, then you may not access the service.</p>
+                </div>
+                <h2>2. User Responsibilities</h2>
+
+                <div class="rule-card">
+                    <div class="rule-badge">02</div>
+                    <h3>No Tampering</h3>
+                    <p>You agree not to reverse engineer, decompile, or decrypt this script. Attempting to crack, bypass, or tamper with the licensing system is strictly prohibited.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-badge">03</div>
+                    <h3>No Sharing</h3>
+                    <p>Do not share or distribute your license key with other individuals. Violation will result in permanent HWID ban without refund.</p>
+                </div>
+                <h2>3. Refund Policy</h2>
+                <div class="rule-card danger">
+                    <div class="rule-badge">!</div>
+                    <h3><i class="fa-solid fa-triangle-exclamation"></i> NO REFUNDS</h3>
+                    <p>Due to digital nature of product and risk of unauthorized copying, <strong>ALL SALES ARE FINAL</strong>. No refunds will be issued under any circumstances once license is delivered (You won't get your money back and will be blacklisted).</p>
+                </div>
+                <h2>4. License Limitations</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">05</div>
+                    <h3>One HWID</h3>
+                    <p>A single purchase grants a license for <strong>ONE (1) Device/HWID</strong>. If you upgrade your hardware (executor) significantly, you may require a HWID reset, which is provided at our discord.</p>
+                </div>
+                <h2>5. Liability & Risks</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">06</div>
+                    <h3>Game Bans</h3>
+                    <p>While we use obfuscation, the use of any modification in online games (Such as Roblox) carries risk. Serenium is <strong>not</strong> responsible for account bans or losses.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-badge">07</div>
+                    <h3>Damages</h3>
+                    <p>To the fullest extent permitted by law, Serenium excludes all representations, warranties, and conditions. We are not liable for direct, indirect, or consequential damages.</p>
+                </div>
+                <h2>6. Termination</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">08</div>
+                    <h3>Revocation</h3>
+                    <p>We reserve right to suspend or revoke your license without notice if you violate Terms, attempt to crack the script, or engage in fraudulent chargebacks.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; #1 CW Script, Serenium HvH.</p>
+        </div>
+    </footer>
+    <script src="/assets/scripts/security.js"></script>
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const interactiveElements = document.querySelectorAll('a');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+        });
+    </script>
+</body>
+</html>

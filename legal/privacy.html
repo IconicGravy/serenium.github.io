@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://serenium.wtf/legal/privacy">
+    <meta property="og:title" content="Privacy Policy | Serenium HvH">
+    <meta property="og:description" content="Read the Privacy Policy for Serenium HvH.">
+    <meta property="og:image" content="/assets/srnm/nobg-logo.png">
+    <meta name="theme-color" content="#ffffff">
+    <title>Privacy Policy | Serenium HVH</title>
+    <link rel="icon" type="image/png" href="/assets/srnm/nobg-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700;900&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/styles/ad5f9603891ae5cea94b5a7c39e76e9d.css" type="text/css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-background"></div>
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <nav>
+        <div class="container nav-inner">
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+            </div>
+        </div>
+    </nav>
+    <main class="section">
+        <div class="container">
+            <div class="policy-header">
+                <h1>Privacy Policy</h1>
+                <p>Last Updated: Jan, 2026. This document outlines how Serenium handles your data and privacy (Securely).</p>
+            </div>
+            <div class="policy-content">
+                <div class="rule-card">
+                    <div class="rule-badge">00</div>
+                    <h3>No-Log Policy</h3>
+                    <p>Serenium operates on a strict <strong>No-Log Policy</strong>. We do not log, track, or store your usage data, IP address, or in-game activity. Our primary goal is to ensure your anonymity and security.</p>
+                </div>
+                <h2>1. Data Collection</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">01</div>
+                    <h3>Hardware ID (HWID)</h3>
+                    <p>A unique identifier generated based on your hardware configuration. This is used to bind your license to your machine to prevent unauthorized sharing.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-badge">02</div>
+                    <h3>Email Address</h3>
+                    <p>Used solely for product delivery and support communication. We do not use this for marketing or third-party distribution.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-badge">03</div>
+                    <h3>Payment Details</h3>
+                    <p>Processed securely by third-party providers (PayPal, Stripe, etc.). We do not store your credit card information on our servers.</p>
+                </div>
+                <h2>2. Data Usage</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">04</div>
+                    <h3>License Verification</h3>
+                    <p>Verifying ownership of the script license and preventing illegal distribution.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-badge">05</div>
+                    <h3>Updates & Authentication</h3>
+                    <p>Providing the script updates, authentication checks, and ensuring that client(s) functions correctly.</p>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-badge">06</div>
+                    <h3>Support & Security</h3>
+                    <p>Responding to customer support inquiries and improving product security and stability.</p>
+                </div>
+                <h2>3. Third-Party Services</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">07</div>
+                    <h3>Hosting & Payments</h3>
+                    <p>Serenium may employ third-party companies for services such as hosting, authentication, and payment processing. These third parties have access to your Personal Data only to perform specific tasks on our behalf and are obligated not to disclose or use it for any other purpose.</p>
+                </div>
+                <h2>4. Security</h2>
+                <div class="rule-card">
+                    <div class="rule-badge">08</div>
+                    <h3>Encryption</h3>
+                    <p>We implement industry-standard security measures to protect your data. Your HWID is hashed and encrypted. We do not sell, trade, or transfer your personally identifiable information to outside parties without your explicit consent, except as required by law.</p>
+                </div>
+                <h2>5. Contact</h2>
+                
+                <div class="rule-card">
+                    <div class="rule-badge">09</div>
+                    <h3>Get in Touch</h3>
+                    <p>If you have any questions about our Privacy Policy, please contact us through our official support channels.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; #1 CW Script, Serenium HvH.</p>
+        </div>
+    </footer>
+    <script src="/assets/scripts/security.js"></script>
+    <script>
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const interactiveElements = document.querySelectorAll('a');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+        });
+    </script>
+</body>
+</html>
