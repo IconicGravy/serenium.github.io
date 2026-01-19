@@ -58,14 +58,15 @@ const nextBtn = document.getElementById('next');
 let currentIndex = 1;
 
 function updateGallery() {
+   const activeItem = items[currentIndex];
+   const containerWidth = track.parentElement.clientWidth;
 
-   const itemWidth = items[currentIndex].getBoundingClientRect().width + 35;
+   const itemLeft = activeItem.offsetLeft;
+   const itemWidth = activeItem.offsetWidth;
+   const centerOffset = (containerWidth / 2) - (itemWidth / 2);
+   const translateX = -itemLeft + centerOffset;
 
-   const centerOffset = (track.parentElement.clientWidth / 2) - (items[currentIndex].getBoundingClientRect().width / 2);
-
-   const itemPosition = currentIndex * itemWidth;
-
-   track.style.transform = `translateX(${-itemPosition + centerOffset}px)`;
+   track.style.transform = `translateX(${translateX}px)`;
 
    items.forEach((item, index) => {
       if (index === currentIndex) item.classList.add('active');
@@ -241,7 +242,8 @@ buyBtns.forEach(btn => {
             },
             onApprove: function (data, actions) {
                return actions.order.capture().then(function (details) {
-                  alert('Transaction completed by ' + details.payer.name.given_name); // only few people know about this btw :wink:
+                  alert('Transaction completed by ' + details.payer.name.given_name);
+
                });
             }
          }).render('#paypal-button-container');
