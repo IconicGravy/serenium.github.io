@@ -256,30 +256,10 @@
                 <p>Once the transaction is complete, please join our <a href="https://discord.gg/Yq7FzmypQ7" target="_blank">Discord Server</a> and open a purchase ticket. Inside the ticket, send a screenshot of the payment or your wallet transaction ID.</p>            </div>
         </div>
     </div>
-    <script>
-        const originalFetch = window.fetch;
-window.fetch = function(...args) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(originalFetch.apply(this, args));
-        }, 3000 + Math.random() * 7000);
-    });
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        const src = img.src;
-        img.src = '';
-        setTimeout(() => {
-            img.src = src;
-        }, 5000 + Math.random() * 10000);
-    });
-});
-    </script>
     <script src="/assets/scripts/index.js"></script>
     <script src="/assets/scripts/security.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AZIrUP7N4fzoN_5jvcSH8TE7OI-U6_SS73PVej-2h4P2BOtcCQlnazCruX82_gcKbMQ-JYfY9YidvJph" data-sdk-integration-source="button-factory"></script>
 </body>
 </html> 
+
 
