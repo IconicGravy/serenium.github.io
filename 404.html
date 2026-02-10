@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenium HVH | 404</title>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://serenium.wtf">
+    <meta property="og:title" content="Serenium HvH">
+    <meta property="og:description" content="#1 CW modification utility">
+    <meta property="og:image" content="/assets/srnm/nobg-logo.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="/assets/srnm/nobg-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-deep: #020205;
+        --accent: #ffffff;
+        --accent-dim: rgba(255, 255, 255, 0.05);
+        --accent-glow: rgba(255, 255, 255, 0.8);
+        --glass-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(20, 20, 25, 0.7) 100%);
+        --glass-border: rgba(255, 255, 255, 0.15);
+        --text-white: #ffffff;
+        --text-gray: #9ca3af;
+        --transition-premium: cubic-bezier(0.23, 1, 0.32, 1);
+        --transition-mobile: cubic-bezier(0.77, 0, 0.175, 1);
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        cursor: none;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg-deep);
+        color: var(--text-white);
+        font-family: 'Outfit', sans-serif;
+        overflow-x: hidden;
+        width: 100%;
+        background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 30%), radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.04) 0%, transparent 30%);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 99999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.8s ease-out, visibility 0.8s;
+      }
+
+      .loader-content {
+        text-align: center;
+        animation: fadeInLoader 1s ease-out;
+      }
+
+      .loader-logo {
+        height: 60px;
+        margin-bottom: 24px;
+        fill: #fff;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        animation: pulseLogo 2s infinite ease-in-out;
+      }
+
+      .loader-bar {
+        width: 200px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .loader-progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        background: #fff;
+        box-shadow: 0 0 10px #fff;
+        animation: loadProgress 2.2s cubic-bezier(0.83, 0, 0.17, 1) forwards;
+      }
+
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9000;
+        opacity: 0.03;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJnoiPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjY1IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2cpIiBvcGFjaXR5PSIwLjUiLz48L3N2Zz4=');
+      }
+
+      .cursor-dot,
+      .cursor-outline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 10000;
+        pointer-events: none;
+      }
+
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent);
+      }
+
+      .cursor-outline {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--accent-glow);
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+      }
+
+      body.hovering .cursor-outline {
+        width: 60px;
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(2px);
+        border-color: transparent;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        perspective: 1000px;
+      }
+
+      .glow-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        animation: floatOrb 10s infinite alternate ease-in-out;
+        z-index: -1;
+      }
+
+      .orb-1 {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent 70%);
+        top: 10%;
+        left: 10%;
+      }
+
+      .orb-2 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(100, 100, 255, 0.1), transparent 70%);
+        bottom: 10%;
+        right: 10%;
+        animation-delay: -5s;
+      }
+
+      .glass-card {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 3rem 4rem;
+        border-radius: 24px;
+        text-align: center;
+        max-width: 600px;
+        width: 100%;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        transform-style: preserve-3d;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: cardEntrance 1s var(--transition-premium) forwards;
+        animation-delay: 2.5s;
+      }
+
+      .error-code {
+        font-size: 8rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 1rem;
+        background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.3) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        position: relative;
+        display: inline-block;
+      }
+
+      .error-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        color: var(--text-white);
+        letter-spacing: 1px;
+      }
+
+      .error-desc {
+        color: var(--text-gray);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+        font-size: 1rem;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 32px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s var(--transition-premium);
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: var(--bg-deep);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--glass-border);
+        color: var(--text-white);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--accent);
+      }
+
+      @keyframes fadeInLoader {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes pulseLogo {
+
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        50% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes loadProgress {
+        0% {
+          width: 0%;
+        }
+
+        50% {
+          width: 40%;
+        }
+
+        100% {
+          width: 100%;
+        }
+      }
+
+      @keyframes cardEntrance {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes floatOrb {
+        0% {
+          transform: translate(0, 0);
+        }
+
+        100% {
+          transform: translate(30px, 50px);
+        }
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        fill: currentColor;
+      }
+
+      @media (max-width: 600px) {
+        .error-code {
+          font-size: 5rem;
+        }
+
+        .glass-card {
+          padding: 2rem;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="loader-content">
+        <svg class="loader-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="none" />
+          <path d="M50 10 L50 90 M10 50 L90 50" stroke="white" stroke-width="1" opacity="0.5" />
+          <circle cx="50" cy="50" r="15" fill="white" />
+        </svg>
+        <div class="loader-bar">
+          <div class="loader-progress"></div>
+        </div>
+      </div>
+    </div>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <main>
+      <div class="glass-card" id="tilt-card">
+        <div class="error-code" data-text="404">404</div>
+        <h1 class="error-title">What were you trying to reach?</h1>
+        <p class="error-desc"> The path you just entered: ( <strong>serenium.wtf <span id="missing-path"></span>
+          </strong>) doesn't exist G. <br>
+          <br> If you're 100% this exists and its a web problem then contact @p2w8 (on discord).
+        </p>
+        <div class="btn-group">
+          <a href="/" class="btn btn-primary hover-trigger">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg> Return Home </a>
+          <button onclick="history.back()" class="btn btn-secondary hover-trigger"> Go Back </button>
+        </div>
+      </div>
+    </main>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('preloader');
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          preloader.style.visibility = 'hidden';
+          document.body.classList.add('loaded');
+        }, 2500);
+        const pathDisplay = document.getElementById('missing-path');
+        if (window.location.pathname.length > 1) {
+          pathDisplay.innerText = window.location.pathname;
+        } else {
+          pathDisplay.innerText = "/unknown-signal";
+        }
+        const cursorDot = document.querySelector('[data-cursor-dot]');
+        const cursorOutline = document.querySelector('[data-cursor-outline]');
+        const hoverTriggers = document.querySelectorAll('.hover-trigger, a, button');
+        window.addEventListener('mousemove', (e) => {
+          const posX = e.clientX;
+          const posY = e.clientY;
+          cursorDot.style.left = `${posX}px`;
+          cursorDot.style.top = `${posY}px`;
+          cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+          }, {
+            duration: 500,
+            fill: "forwards"
+          });
+        });
+        hoverTriggers.forEach(trigger => {
+          trigger.addEventListener('mouseenter', () => {
+            document.body.classList.add('hovering');
+          });
+          trigger.addEventListener('mouseleave', () => {
+            document.body.classList.remove('hovering');
+          });
+        });
+        const card = document.getElementById('tilt-card');
+        if (window.matchMedia("(pointer: fine)").matches) {
+          document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 25;
+            const y = (window.innerHeight / 2 - e.pageY) / 25;
+            card.style.transform = `rotateY(${x * -0.5}deg) rotateX(${y * 0.5}deg)`;
+          });
+          document.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
