@@ -58,15 +58,14 @@ const nextBtn = document.getElementById('next');
 let currentIndex = 1;
 
 function updateGallery() {
-   const activeItem = items[currentIndex];
-   const containerWidth = track.parentElement.clientWidth;
 
-   const itemLeft = activeItem.offsetLeft;
-   const itemWidth = activeItem.offsetWidth;
-   const centerOffset = (containerWidth / 2) - (itemWidth / 2);
-   const translateX = -itemLeft + centerOffset;
+   const itemWidth = items[currentIndex].getBoundingClientRect().width + 35;
 
-   track.style.transform = `translateX(${translateX}px)`;
+   const centerOffset = (track.parentElement.clientWidth / 2) - (items[currentIndex].getBoundingClientRect().width / 2);
+
+   const itemPosition = currentIndex * itemWidth;
+
+   track.style.transform = `translateX(${-itemPosition + centerOffset}px)`;
 
    items.forEach((item, index) => {
       if (index === currentIndex) item.classList.add('active');
@@ -215,9 +214,11 @@ const paymentData = {
     `,
    paypal: `
         <div class="pay-title">PayPal Payment</div>
-        <p class="pay-desc">Complete your secure checkout via PayPal.</p>
-        <div id="paypal-button-container"></div>
-        <div class="pay-notice">If buttons do not load, ensure adblockers are disabled for this site.</div>
+        <p class="pay-desc">In order to purchase via PayPal join our discord server via the button below.</p>
+        <div class="crypto-container" style="cursor: pointer; text-align: center; justify-content: center; display: block;">
+             <a href="https://discord.gg/twMsXpduVm" target="_blank" style="color: white; text-decoration: none; font-weight: 600;">Join Discord</a>
+        </div>
+        <div class="pay-notice">You cannot automatically purchase via PayPal anymore.</div>
     `
 };
 
@@ -242,8 +243,7 @@ buyBtns.forEach(btn => {
             },
             onApprove: function (data, actions) {
                return actions.order.capture().then(function (details) {
-                  alert('Transaction completed by ' + details.payer.name.given_name);
-
+                  alert('Transaction completed by ' + details.payer.name.given_name); // only few people know about this btw :wink:
                });
             }
          }).render('#paypal-button-container');
